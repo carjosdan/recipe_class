@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../styles/app_styles.dart' show AppStyles;
+import 'package:recetario_clase/styles/app_styles.dart';
 
 class IconText extends StatelessWidget {
   const IconText({super.key, required this.icon, required this.text});
@@ -10,12 +10,8 @@ class IconText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [
-        Icon(icon),
-       // SizedBox(width: 8.0),
-        AppStyles.sectionSpacing,
-        Text(text),
-      ],
+      mainAxisSize: .min,
+      children: [Icon(icon), AppStyles.smallSeparator, Text(text)],
     );
   }
 }

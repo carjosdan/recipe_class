@@ -1,23 +1,35 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'screens/recipe_detail_screen.dart';
-import 'models/recipe.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:recetario_clase/screens/recipe_list_screen.dart';
+import 'package:recetario_clase/styles/app_styles.dart';
 
 void main() {
+  if (kReleaseMode) {
+    debugPrint = (String? message, {int? wrapWidth}) {};
+  } else {
+    debugPrint = (String? message, {int? wrapWidth}) {
+      final lines = '$message'.split('\n').map((line) => '[recetario] $line');
+      debugPrintThrottled(lines.join('\n'), wrapWidth: wrapWidth);
+    };
+  }
   runApp(const RecipeApp());
 }
 
 class RecipeApp extends StatelessWidget {
-  const RecipeApp({super.key}); 
+  const RecipeApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        fontFamily: 'Lexend',
+        fontFamily: GoogleFonts.lexend().fontFamily,
+        appBarTheme: AppBarTheme(
+          backgroundColor: AppStyles.primary,
+          foregroundColor: AppStyles.onPrimary,
+        ),
       ),
-      home: RecipeDetailScreen(recipe: arrabiata),
+      home: RecipeListScreen(),
     );
-
   }
 }
